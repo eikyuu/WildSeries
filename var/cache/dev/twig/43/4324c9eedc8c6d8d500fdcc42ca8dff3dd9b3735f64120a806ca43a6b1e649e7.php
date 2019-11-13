@@ -58,13 +58,17 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
         // line 7
         echo "    </head>
     <body>
-        ";
+        <h1>";
         // line 9
-        $this->displayBlock('body', $context, $blocks);
+        echo twig_escape_filter($this->env, (isset($context["website"]) || array_key_exists("website", $context) ? $context["website"] : (function () { throw new RuntimeError('Variable "website" does not exist.', 9, $this->source); })()), "html", null, true);
+        echo "</h1>
+        ";
         // line 10
+        $this->displayBlock('body', $context, $blocks);
+        // line 11
         echo "        ";
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 11
+        // line 12
         echo "    </body>
 </html>
 ";
@@ -113,7 +117,7 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
 
     }
 
-    // line 9
+    // line 10
     public function block_body($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -131,7 +135,7 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
 
     }
 
-    // line 10
+    // line 11
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -154,9 +158,14 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
         return "base.html.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  135 => 10,  117 => 9,  99 => 6,  80 => 5,  68 => 11,  65 => 10,  63 => 9,  59 => 7,  57 => 6,  53 => 5,  47 => 1,);
+        return array (  139 => 11,  121 => 10,  103 => 6,  84 => 5,  72 => 12,  69 => 11,  67 => 10,  63 => 9,  59 => 7,  57 => 6,  53 => 5,  47 => 1,);
     }
 
     public function getSourceContext()
@@ -169,6 +178,7 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        <h1>{{ website }}</h1>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
