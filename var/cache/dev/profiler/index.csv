@@ -47,3 +47,10 @@ c25a50,127.0.0.1,GET,http://localhost:8001/,1573676933,82ed5a,200
 e9b119,127.0.0.1,GET,http://localhost:8001/,1573676933,53d330,200
 53d330,127.0.0.1,GET,http://localhost:8001/,1573676933,,500
 f22e2c,127.0.0.1,GET,http://localhost:8001/,1573676938,,200
+f03608,::1,GET,http://localhost:8000/home/account,1573719075,350e92,200
+350e92,::1,GET,http://localhost:8000/home/account,1573719075,,404
+8c0e24,::1,GET,http://localhost:8000/,1573719077,,200
+e425a5,::1,GET,http://localhost:8000/favicon.ico,1573719077,62acff,200
+62acff,::1,GET,http://localhost:8000/favicon.ico,1573719077,,404
+ee65af,::1,GET,http://localhost:8000/,1573719083,,200
+a562bc,::1,GET,http://localhost:8000/,1573719086,,200

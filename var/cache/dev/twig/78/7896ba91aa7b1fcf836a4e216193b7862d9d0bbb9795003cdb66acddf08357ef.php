@@ -25,6 +25,7 @@ class __TwigTemplate_29d67c04b8b2aa7fbbe7e7e21ce319f3baa64081cd6ae79e43bb5eeb7d8
         $this->source = $this->getSourceContext();
 
         $this->blocks = [
+            'bienvenue' => [$this, 'block_bienvenue'],
         ];
     }
 
@@ -53,6 +54,27 @@ class __TwigTemplate_29d67c04b8b2aa7fbbe7e7e21ce319f3baa64081cd6ae79e43bb5eeb7d8
 
     }
 
+    // line 3
+    public function block_bienvenue($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "bienvenue"));
+
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "bienvenue"));
+
+        echo " <h1>";
+        echo twig_escape_filter($this->env, (isset($context["website"]) || array_key_exists("website", $context) ? $context["website"] : (function () { throw new RuntimeError('Variable "website" does not exist.', 3, $this->source); })()), "html", null, true);
+        echo "</h1> ";
+        
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
+
+        
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
+
+    }
+
     public function getTemplateName()
     {
         return "wild/index.html.twig";
@@ -65,13 +87,14 @@ class __TwigTemplate_29d67c04b8b2aa7fbbe7e7e21ce319f3baa64081cd6ae79e43bb5eeb7d8
 
     public function getDebugInfo()
     {
-        return array (  34 => 1,);
+        return array (  58 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
     {
         return new Source("{% extends 'base.html.twig' %}
-    
+
+{% block bienvenue %} <h1>{{ website }}</h1> {% endblock %}
 ", "wild/index.html.twig", "/home/eikyuu/Desktop/quetes/symfony/wild-series/templates/wild/index.html.twig");
     }
 }

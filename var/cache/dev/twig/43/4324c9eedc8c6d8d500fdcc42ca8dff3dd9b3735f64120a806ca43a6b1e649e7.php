@@ -29,6 +29,7 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
         $this->blocks = [
             'title' => [$this, 'block_title'],
             'stylesheets' => [$this, 'block_stylesheets'],
+            'bienvenue' => [$this, 'block_bienvenue'],
             'body' => [$this, 'block_body'],
             'javascripts' => [$this, 'block_javascripts'],
         ];
@@ -58,12 +59,11 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
         // line 7
         echo "    </head>
     <body>
-        <h1>";
-        // line 9
-        echo twig_escape_filter($this->env, (isset($context["website"]) || array_key_exists("website", $context) ? $context["website"] : (function () { throw new RuntimeError('Variable "website" does not exist.', 9, $this->source); })()), "html", null, true);
-        echo "</h1>
         ";
+        // line 9
+        $this->displayBlock('bienvenue', $context, $blocks);
         // line 10
+        echo "        ";
         $this->displayBlock('body', $context, $blocks);
         // line 11
         echo "        ";
@@ -117,6 +117,24 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
 
     }
 
+    // line 9
+    public function block_bienvenue($context, array $blocks = [])
+    {
+        $macros = $this->macros;
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "bienvenue"));
+
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "bienvenue"));
+
+        
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
+
+        
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
+
+    }
+
     // line 10
     public function block_body($context, array $blocks = [])
     {
@@ -158,14 +176,9 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
         return "base.html.twig";
     }
 
-    public function isTraitable()
-    {
-        return false;
-    }
-
     public function getDebugInfo()
     {
-        return array (  139 => 11,  121 => 10,  103 => 6,  84 => 5,  72 => 12,  69 => 11,  67 => 10,  63 => 9,  59 => 7,  57 => 6,  53 => 5,  47 => 1,);
+        return array (  157 => 11,  139 => 10,  121 => 9,  103 => 6,  84 => 5,  72 => 12,  69 => 11,  66 => 10,  64 => 9,  60 => 7,  58 => 6,  54 => 5,  48 => 1,);
     }
 
     public function getSourceContext()
@@ -178,7 +191,7 @@ class __TwigTemplate_0b5cc534be2146d4fe986d958c643060c7596b519ab3e53f64b26cde25e
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        <h1>{{ website }}</h1>
+        {% block bienvenue %}{% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
