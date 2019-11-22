@@ -63,9 +63,9 @@ class __TwigTemplate_c1dbeab3e984a89e00cadea6c500a613a923317758a6d831464a5153568
         <header>
             ";
         // line 12
-        echo twig_include($this->env, $context, "/wild/navbar.html.twig");
-        echo "
-        </header>
+        $this->loadTemplate("/wild/navbar.html.twig", "base.html.twig", 12)->display($context);
+        // line 13
+        echo "        </header>
         ";
         // line 14
         $this->displayBlock('bienvenue', $context, $blocks);
@@ -222,7 +222,7 @@ class __TwigTemplate_c1dbeab3e984a89e00cadea6c500a613a923317758a6d831464a5153568
 
     public function getDebugInfo()
     {
-        return array (  201 => 18,  191 => 17,  173 => 16,  155 => 15,  137 => 14,  124 => 7,  114 => 6,  95 => 5,  82 => 20,  79 => 17,  76 => 16,  73 => 15,  71 => 14,  66 => 12,  61 => 9,  59 => 6,  55 => 5,  49 => 1,);
+        return array (  201 => 18,  191 => 17,  173 => 16,  155 => 15,  137 => 14,  124 => 7,  114 => 6,  95 => 5,  82 => 20,  79 => 17,  76 => 16,  73 => 15,  71 => 14,  68 => 13,  66 => 12,  61 => 9,  59 => 6,  55 => 5,  49 => 1,);
     }
 
     public function getSourceContext()
@@ -238,7 +238,7 @@ class __TwigTemplate_c1dbeab3e984a89e00cadea6c500a613a923317758a6d831464a5153568
     </head>
     <body>
         <header>
-            {{ include (\"/wild/navbar.html.twig\") }}
+            {% include (\"/wild/navbar.html.twig\") %}
         </header>
         {% block bienvenue %}{% endblock %}
         {% block show %}{% endblock %}
