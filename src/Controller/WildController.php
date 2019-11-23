@@ -8,7 +8,6 @@ use Symfony\Component\Routing\Annotation\Route;
     /**
      * @Route("/wild", name="wild_")
     */
-
 Class WildController extends AbstractController
 {
     /**
@@ -28,6 +27,6 @@ Class WildController extends AbstractController
     $final = str_replace("-", " ", "$slug");
     $result = ucwords($final);
     
-   return $this->render('wild/show.html.twig', ['slug' => $result]);
+    return $this->render('wild/show.html.twig', ['slug' => $result]);
   }
 }
