@@ -64,7 +64,10 @@ class __TwigTemplate_b444b3e104f154ae20035f0aa48b76afc2cde8a6b2a928c5222bee95bf2
 
         // line 3
         echo "<nav class=\"navbar navbar-expand-lg navbar-light\">
-  <a class=\"navbar-brand\" href=\"#\">Navbar</a>
+  <a class=\"navbar-brand\" href=\"";
+        // line 4
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_index");
+        echo "\">Wild Serie</a>
   <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
     <span class=\"navbar-toggler-icon\"></span>
   </button>
@@ -72,29 +75,26 @@ class __TwigTemplate_b444b3e104f154ae20035f0aa48b76afc2cde8a6b2a928c5222bee95bf2
   <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
     <ul class=\"navbar-nav mr-auto\">
       <li class=\"nav-item active\">
-        <a class=\"nav-link\" href=\"#\">Home <span class=\"sr-only\">(current)</span></a>
-      </li>
-      <li class=\"nav-item\">
-        <a class=\"nav-link\" href=\"#\">Link</a>
+        <a class=\"nav-link\" href=\"";
+        // line 12
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("app_index");
+        echo "\">Accueil <span class=\"sr-only\">(current)</span></a>
       </li>
       <li class=\"nav-item dropdown\">
         <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
-          Dropdown
+          Toutes les categories
         </a>
         <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
-          <a class=\"dropdown-item\" href=\"#\">Action</a>
-          <a class=\"dropdown-item\" href=\"#\">Another action</a>
-          <div class=\"dropdown-divider\"></div>
-          <a class=\"dropdown-item\" href=\"#\">Something else here</a>
-        </div>
-      </li>
-      <li class=\"nav-item\">
-        <a class=\"nav-link disabled\" href=\"#\">Disabled</a>
+          <a class=\"dropdown-item\" href=\"";
+        // line 19
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("wild_index");
+        echo "\">Toutes les series</a>
+          <a class=\"dropdown-item\" href=\"category/horreur\">Horreur</a>
       </li>
     </ul>
     <form class=\"form-inline my-2 my-lg-0\">
       <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">
-      <button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Search</button>
+      <button class=\"btn btn-outline-dark my-2 my-sm-0\" type=\"submit\">Search</button>
     </form>
   </div>
 </nav>
@@ -114,7 +114,7 @@ class __TwigTemplate_b444b3e104f154ae20035f0aa48b76afc2cde8a6b2a928c5222bee95bf2
 
     public function getDebugInfo()
     {
-        return array (  66 => 3,  47 => 2,  44 => 1,);
+        return array (  90 => 19,  80 => 12,  69 => 4,  66 => 3,  47 => 2,  44 => 1,);
     }
 
     public function getSourceContext()
@@ -122,7 +122,7 @@ class __TwigTemplate_b444b3e104f154ae20035f0aa48b76afc2cde8a6b2a928c5222bee95bf2
         return new Source("
 {% block navbar %}
 <nav class=\"navbar navbar-expand-lg navbar-light\">
-  <a class=\"navbar-brand\" href=\"#\">Navbar</a>
+  <a class=\"navbar-brand\" href=\"{{ path('app_index') }}\">Wild Serie</a>
   <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
     <span class=\"navbar-toggler-icon\"></span>
   </button>
@@ -130,29 +130,20 @@ class __TwigTemplate_b444b3e104f154ae20035f0aa48b76afc2cde8a6b2a928c5222bee95bf2
   <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">
     <ul class=\"navbar-nav mr-auto\">
       <li class=\"nav-item active\">
-        <a class=\"nav-link\" href=\"#\">Home <span class=\"sr-only\">(current)</span></a>
-      </li>
-      <li class=\"nav-item\">
-        <a class=\"nav-link\" href=\"#\">Link</a>
+        <a class=\"nav-link\" href=\"{{ path('app_index') }}\">Accueil <span class=\"sr-only\">(current)</span></a>
       </li>
       <li class=\"nav-item dropdown\">
         <a class=\"nav-link dropdown-toggle\" href=\"#\" id=\"navbarDropdown\" role=\"button\" data-toggle=\"dropdown\" aria-haspopup=\"true\" aria-expanded=\"false\">
-          Dropdown
+          Toutes les categories
         </a>
         <div class=\"dropdown-menu\" aria-labelledby=\"navbarDropdown\">
-          <a class=\"dropdown-item\" href=\"#\">Action</a>
-          <a class=\"dropdown-item\" href=\"#\">Another action</a>
-          <div class=\"dropdown-divider\"></div>
-          <a class=\"dropdown-item\" href=\"#\">Something else here</a>
-        </div>
-      </li>
-      <li class=\"nav-item\">
-        <a class=\"nav-link disabled\" href=\"#\">Disabled</a>
+          <a class=\"dropdown-item\" href=\"{{ path('wild_index') }}\">Toutes les series</a>
+          <a class=\"dropdown-item\" href=\"category/horreur\">Horreur</a>
       </li>
     </ul>
     <form class=\"form-inline my-2 my-lg-0\">
       <input class=\"form-control mr-sm-2\" type=\"search\" placeholder=\"Search\" aria-label=\"Search\">
-      <button class=\"btn btn-outline-success my-2 my-sm-0\" type=\"submit\">Search</button>
+      <button class=\"btn btn-outline-dark my-2 my-sm-0\" type=\"submit\">Search</button>
     </form>
   </div>
 </nav>

@@ -1,14 +1,14 @@
 @import "~bootstrap/scss/bootstrap";
 body {
-    background-color:gray;
+    background-color: $black;
 }
-  $primary: #db0000;
-  $secondary: #000000;
-  $thirdly: #ffffff;
-  $fourthly: #564d4d;
-  $fifthly: #84c318;
+  $red: #db0000;
+  $black: #000000;
+  $blanc: #ffffff;
+  $gris: #564d4d;
+  $sang: #831010;
 
 .navbar {
-  background-color: $primary;
+  background-color: $red;
 }
 
