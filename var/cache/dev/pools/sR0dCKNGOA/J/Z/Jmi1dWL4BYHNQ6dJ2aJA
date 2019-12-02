@@ -13,9 +13,6 @@ return $getExpiry ? PHP_INT_MAX : Hydrator::hydrate(
             'targetEntity' => [
                 'App\\Entity\\Category',
             ],
-            'inversedBy' => [
-                'programs',
-            ],
             'nullable' => [
                 1 => false,
             ],
