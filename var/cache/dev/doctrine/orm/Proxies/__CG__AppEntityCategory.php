@@ -64,10 +64,10 @@ class Category extends \App\Entity\Category implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'name'];
+            return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'programs'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'name'];
+        return ['__isInitialized__', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'id', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'name', '' . "\0" . 'App\\Entity\\Category' . "\0" . 'programs'];
     }
 
     /**
@@ -173,6 +173,39 @@ class Category extends \App\Entity\Category implements \Doctrine\ORM\Proxy\Proxy
     }
 
     
+    /**
+     * {@inheritDoc}
+     */
+    public function getPrograms(): \Doctrine\Common\Collections\Collection
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPrograms', []);
+
+        return parent::getPrograms();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addProgram(\App\Entity\Program $program): \App\Entity\Category
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addProgram', [$program]);
+
+        return parent::addProgram($program);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeProgram(\App\Entity\Program $program): \App\Entity\Category
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeProgram', [$program]);
+
+        return parent::removeProgram($program);
+    }
+
     /**
      * {@inheritDoc}
      */
