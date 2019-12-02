@@ -125,24 +125,3 @@ Class WildController extends AbstractController
         return $this->render('wild/program.html.twig');
     }
 }
-
-// /**
-//      * @param string $categoryName The category
-//      * @Route("/category/{categoryName<^[a-z]+$>}", defaults={"categoryName" = null}, name="show_category")
-//      * @return Response
-//      */
-//     public function showByCategory(string $categoryName, CategoryRepository $categoryRepository, ProgramRepository $programRepository):Response
-//     {
-//         $category = $categoryRepository->findBy(
-//             ['name' => $categoryName]
-//         );
-//         $programs = $programRepository->findBy(
-//                 ['category' => $category],
-//                 ['id' => 'DESC'],
-//                 3
-//             );
-//         return $this->render('wild/category.html.twig', [
-//             'categoryName' => ucwords($categoryName),
-//             'programs' => $programs
-//         ]);
-//     }
