@@ -19,6 +19,7 @@ return [
     'wild_wild_index' => [[], ['_controller' => 'App\\Controller\\WildController::index'], [], [['text', '/wild/']], [], []],
     'wild_show' => [['slug'], ['slug' => null, '_controller' => 'App\\Controller\\WildController::show'], ['slug' => '[a-z0-9-]+'], [['variable', '/', '[a-z0-9-]+', 'slug', true], ['text', '/wild/show']], [], []],
     'wild_show_category' => [['category'], ['category' => null, '_controller' => 'App\\Controller\\WildController::showByCategory'], ['category' => '[a-z0-9-]+'], [['variable', '/', '[a-z0-9-]+', 'category', true], ['text', '/wild/category']], [], []],
+    'wild_show_program' => [['program'], ['program' => null, '_controller' => 'App\\Controller\\WildController::showByProgram'], ['program' => '[a-z0-9-]+'], [['variable', '/', '[a-z0-9-]+', 'program', true], ['text', '/wild/program']], [], []],
     'wild_show_index' => [[], ['_controller' => 'App\\Controller\\WildController::index'], [], [['text', '/wild/']], [], []],
     'wild_index' => [[], ['_controller' => 'App\\Controller\\WildController::index'], [], [['text', '/wild']], [], []],
 ];

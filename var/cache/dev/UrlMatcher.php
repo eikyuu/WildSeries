@@ -40,6 +40,7 @@ return [
                 .'|/wild/(?'
                     .'|show(?:/([a-z0-9-]+))?(*:200)'
                     .'|category(?:/([a-z0-9-]+))?(*:234)'
+                    .'|program(?:/([a-z0-9-]+))?(*:267)'
                 .')'
             .')/?$}sDu',
     ],
@@ -52,8 +53,9 @@ return [
         149 => [[['_route' => '_profiler_exception_css', '_controller' => 'web_profiler.controller.exception::cssAction'], ['token'], null, null, false, false, null]],
         159 => [[['_route' => '_profiler', '_controller' => 'web_profiler.controller.profiler::panelAction'], ['token'], null, null, false, true, null]],
         200 => [[['_route' => 'wild_show', 'slug' => null, '_controller' => 'App\\Controller\\WildController::show'], ['slug'], null, null, false, true, null]],
-        234 => [
-            [['_route' => 'wild_show_category', 'category' => null, '_controller' => 'App\\Controller\\WildController::showByCategory'], ['category'], null, null, false, true, null],
+        234 => [[['_route' => 'wild_show_category', 'category' => null, '_controller' => 'App\\Controller\\WildController::showByCategory'], ['category'], null, null, false, true, null]],
+        267 => [
+            [['_route' => 'wild_show_program', 'program' => null, '_controller' => 'App\\Controller\\WildController::showByProgram'], ['program'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
     ],
