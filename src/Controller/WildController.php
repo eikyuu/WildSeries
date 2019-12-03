@@ -3,6 +3,7 @@
 namespace App\Controller;
 use App\Entity\Program;
 use App\Entity\Category;
+use App\Entity\Season;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -95,5 +96,32 @@ Class WildController extends AbstractController
             'category' => $category,
             'programs' => $program
         ]);
+    }
+
+    /**
+    * @Route("/program/{program<^[a-z0-9-]+$>}", defaults={"program" = null}, name="show_program")
+    */
+    public function showByProgram(string $program) : Response
+    {
+        if (!$program) {
+            throw $this
+                ->createNotFoundException('No category has been sent to find a category.');
+        }
+        $program = preg_replace(
+            '/-/',
+            ' ', ucwords(trim(strip_tags($program)), "-")
+        );
+        $program = $this->getDoctrine()
+            ->getRepository(Program::class)
+            ->findBy(
+                ['title' => $program]
+            );
+        $season = $this->getDoctrine()
+            ->getRepository(Season::class)
+            ->findBy(
+                ['program' => $program]
+        );
+            var_dump($season);
+        return $this->render('wild/program.html.twig');
     }
 }
