@@ -97,31 +97,35 @@ Class WildController extends AbstractController
             'programs' => $program
         ]);
     }
-
     /**
-    * @Route("/program/{program<^[a-z0-9-]+$>}", defaults={"program" = null}, name="show_program")
-    */
-    public function showByProgram(string $program) : Response
+     * @Route("/program/{programName<^[a-z0-9-]+$>}", defaults={"programName" = null}, name="show_program")
+     * @return Response
+     */
+    public function showByProgram(?string $programName):Response
     {
-        if (!$program) {
+        if (!$programName) {
             throw $this
-                ->createNotFoundException('No category has been sent to find a category.');
+                ->createNotFoundException('No slug has been sent to find a program in program\'s table.');
         }
-        $program = preg_replace(
+        $programName = preg_replace(
             '/-/',
-            ' ', ucwords(trim(strip_tags($program)), "-")
+            ' ', ucwords(trim(strip_tags($programName)), "-")
         );
         $program = $this->getDoctrine()
             ->getRepository(Program::class)
-            ->findBy(
-                ['title' => $program]
-            );
-        $season = $this->getDoctrine()
+            ->findOneBy(['title' => mb_strtolower($programName)]);
+        $seasons = $this->getDoctrine()
             ->getRepository(Season::class)
-            ->findBy(
-                ['program' => $program]
-        );
-            var_dump($season);
-        return $this->render('wild/program.html.twig');
+            ->findBy([ 'program' => $program]);
+        if (!$program) {
+            throw $this->createNotFoundException(
+                'No program with '.$programName.' title, found in program\'s table.'
+            );
+        }
+        return $this->render('wild/program.html.twig', [
+            'program' => $program,
+            'programName'  => $programName,
+            'seasons' => $seasons,
+        ]);
     }
 }

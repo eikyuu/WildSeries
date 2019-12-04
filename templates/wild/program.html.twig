@@ -1,2 +1,11 @@
- 
 {% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {% for season in seasons %}
+        <p>Saison {{ loop.index }} : <a href="/wild/season/{{ season.id }}">{{ season.description }}</a> - {{ season.year }}</p>
+    {% endfor %}
+    <a href="{{ path('wild_index') }}">
+        Retour à l'accueil
+    </a>
+{% endblock %}
