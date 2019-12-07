@@ -1,14 +1,20 @@
 @import "~bootstrap/scss/bootstrap";
-body {
-    background-color: $black;
-}
-  $red: #db0000;
-  $black: #000000;
-  $blanc: #ffffff;
-  $gris: #564d4d;
-  $sang: #831010;
+
+$red: #db0000;
+$black: #000000;
+$blanc: #ffffff;
+$gris: #564d4d;
+$sang: #831010;
 
 .navbar {
   background-color: $red;
 }
 
+body {
+  background-color: $black;
+  color:$blanc;
+}
+
+.dropdown-menu {
+  background-color: $red;
+}

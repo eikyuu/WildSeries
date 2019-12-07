@@ -17,12 +17,6 @@ class Episode
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Season", inversedBy="season")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $Season;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $title;
@@ -37,21 +31,14 @@ class Episode
      */
     private $synopsis;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Season", inversedBy="episodes")
+     */
+    private $season;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getSeason(): ?Season
-    {
-        return $this->Season;
-    }
-
-    public function setSeason(?Season $Season): self
-    {
-        $this->Season = $Season;
-
-        return $this;
     }
 
     public function getTitle(): ?string
@@ -86,6 +73,18 @@ class Episode
     public function setSynopsis(string $synopsis): self
     {
         $this->synopsis = $synopsis;
+
+        return $this;
+    }
+
+    public function getSeason(): ?Season
+    {
+        return $this->season;
+    }
+
+    public function setSeason(?Season $season): self
+    {
+        $this->season = $season;
 
         return $this;
     }
