@@ -7,6 +7,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProgramRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\SeasonRepository;
+use App\Entity\Program;
 
 class WildController extends AbstractController
 {
@@ -25,25 +26,20 @@ class WildController extends AbstractController
     }
 
     /**
-     * @Route("/wild/show/{slug<[a-z0-9-]+>}", defaults={"slug" = null}, name="wild_show")
-     */
-    public function show(?string $slug, ProgramRepository $programRepository)
+    * @Route("/wild/{id}", name="wild_show")
+    */
+    public function show(Program $program)
     {
-        if (!$slug) {
+        if (!$program) {
             throw $this
             ->createNotFoundException('No slug has been sent to find a program in program\'s table.');
         }
-        
-        $showName = str_replace('-', ' ', $slug);
-        $showName = ucwords($showName);
-        $program = $programRepository->findOneBy(['title' => mb_strtolower($showName)]);
 
         return $this->render('wild/show.html.twig', [
-            'showName' => $showName,
             'program' => $program
         ]);
     }
-
+   
     /**
      * @Route("/wild/category/{categoryName<[a-z]+>}", defaults={"categoryName" = null}, name="show_category")
      */

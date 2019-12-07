@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="container mt-5">
     <h1>All TV shows: </h1>
     {% for program in programs %}
         <div>
@@ -13,4 +14,5 @@
     <a href="{{ path('app_index') }}">
         Back to home
     </a>
+</div>    
 {% endblock %}
