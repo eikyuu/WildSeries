@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>
+        Episode {{ episode.number }}: {{ episode.title }}
+    </h1>
+    <p>
+        <b>
+            Season {{ season.number }}
+        </b>
+        -
+        {{ program.title }}
+    </p>
+    <p>
+        {{ episode.synopsis }}
+    </p>
+    <p>
+        <a href="{{ path('show_season', {seasonId: season.id}) }}">
+            Back to season list
+        </a>
+        -
+        <a href="{{ path('show_program', {programName: hyphenizedProgramTitle}) }}">
+            Back to show details
+        </a>
+    </p>
+{% endblock %}

@@ -8,6 +8,7 @@ use App\Repository\ProgramRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\SeasonRepository;
 use App\Entity\Program;
+use App\Entity\Episode;
 
 class WildController extends AbstractController
 {
@@ -84,11 +85,28 @@ class WildController extends AbstractController
 
         $program = $season->getProgram();
         $episodes = $season->getEpisodes();
-
+        
         return $this->render('wild/season.html.twig', [
           'program' => $program,
           'season' => $season,
           'episodes' => $episodes
         ]);
     }
+     
+    /**
+     * @Route("/wild/episode/{title}", name="show_episode")
+     */
+    public function showByEpisode(Episode $episode)
+    {
+        $season = $episode->getSeason();
+        $program = $season->getProgram();
+        $hyphenizedProgramTitle = strtolower(str_replace(' ', '-', $program->getTitle()));
+        return $this->render('wild/episode.html.twig', [
+            'episode' => $episode,
+            'season' => $season,
+            'program' => $program,
+            'hyphenizedProgramTitle' => $hyphenizedProgramTitle
+        ]);
+    }
+
 }

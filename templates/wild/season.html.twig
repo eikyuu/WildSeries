@@ -14,7 +14,7 @@
     <ul>
     {% for episode in episodes %}
         <li>
-            <a href="">
+            <a href="{{ path('show_episode', {'title': episode.title }) }}">
                 <b>
                     {{ episode.number }} / {{ episode.title }}
                 </b>
