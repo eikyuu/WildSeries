@@ -14,7 +14,8 @@
     <ul>
     {% for episode in episodes %}
         <li>
-            <a href="{{ path('show_episode', {'title': episode.title }) }}">
+            <a href="{{ path('show_episode', {'title': hyphenizedTitles[loop.index - 1] }) }}">
+            {# <a href="{{ path('show_episode', {'title': episode.title }) }}"> #}
                 <b>
                     {{ episode.number }} / {{ episode.title }}
                 </b>

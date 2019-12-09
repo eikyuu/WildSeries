@@ -7,8 +7,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProgramRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\SeasonRepository;
+use App\Repository\EpisodeRepository;
 use App\Entity\Program;
 use App\Entity\Episode;
+use Symfony\Component\HttpFoundation\Request;
+use App\Form\CategoryType;
 
 class WildController extends AbstractController
 {
@@ -24,6 +27,7 @@ class WildController extends AbstractController
         }
 
         return $this->render('wild/index.html.twig', ['programs' => $programs]);
+
     }
 
     /**
@@ -85,22 +89,33 @@ class WildController extends AbstractController
 
         $program = $season->getProgram();
         $episodes = $season->getEpisodes();
-        
+
+        $hyphenizedTitles = [];
+        foreach ($episodes as $episode) {
+          $hyphenizedTitles[] = strtolower(str_replace(' ', '-', $episode->getTitle()));
+        }
+
         return $this->render('wild/season.html.twig', [
           'program' => $program,
           'season' => $season,
-          'episodes' => $episodes
+          'episodes' => $episodes,
+          'hyphenizedTitles' => $hyphenizedTitles
         ]);
     }
      
     /**
      * @Route("/wild/episode/{title}", name="show_episode")
      */
-    public function showByEpisode(Episode $episode)
+    public function showByEpisode(string $title, EpisodeRepository $episodeRepository)
     {
+
+     
+        $episode = $episodeRepository->findOneBy(['title' => ucwords(str_replace('-', ' ',$title))]);
         $season = $episode->getSeason();
         $program = $season->getProgram();
-        $hyphenizedProgramTitle = strtolower(str_replace(' ', '-', $program->getTitle()));
+
+        $hyphenizedProgramTitle = strtolower(str_replace(' ', '-', $program->getTitle()));        
+               
         return $this->render('wild/episode.html.twig', [
             'episode' => $episode,
             'season' => $season,
