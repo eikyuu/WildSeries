@@ -16,21 +16,6 @@ use App\Form\CategoryType;
 class WildController extends AbstractController
 {
     /**
-     * @Route("/wild", name="wild_index")
-     */
-    public function index(ProgramRepository $programRepository)
-    {
-        $programs = $programRepository->findAll();
-
-        if (!$programs) {
-          throw $this->createNotFoundException('No program found in program\'s table.');
-        }
-
-        return $this->render('wild/index.html.twig', ['programs' => $programs]);
-
-    }
-
-    /**
     * @Route("/wild/{id}", name="wild_show")
     */
     public function show(Program $program)

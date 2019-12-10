@@ -49,10 +49,12 @@ class ActorController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="actor_show", methods={"GET"})
+     * @Route("/{name}", name="actor_show", methods={"GET"})
      */
-    public function show(Actor $actor): Response
+    public function show(string $name, ActorRepository $actorRepository): Response
     {
+        $actor = $actorRepository->findOneBy(['name' => ucwords(str_replace('-', ' ',$name))]);  
+     
         return $this->render('actor/show.html.twig', [
             'actor' => $actor,
         ]);
