@@ -7,18 +7,21 @@
 
 <div class="container mt-5">
     <h1>All TV shows: </h1>
+    <div class="row">
     {% for program in programs %}
-        <div>
-            <h2>{{ loop.index }} / {{ program.title }} - Category: {{ program.category.name }}</h2>
-            <p>{{ program.synopsis }}</p>
+            <div class="col-4 mt-3 text-dark">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" style="height:25rem;" src="{{program.poster}}" alt="{{ program.title }} poster">
+                <div class="card-body">
+                    <h5 class="card-title">{{ program.title }} - Category: {{ program.category.name }}</h5>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>    
+            </div>
         </div>
+       
     {% else %}
         No TV show found.
     {% endfor %}
-    <a href="{{ path('app_index') }}">
-        Back to home
-    </a>
+    </div> 
 </div> 
-
-
 {% endblock %}
