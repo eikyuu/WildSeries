@@ -54,8 +54,8 @@ class WildController extends AbstractController
 
         $programs = $programRepository->findBy(
           ['category' => $category],
-          ['id' => 'DESC'],
-          3
+          ['id' => 'DESC']
+          
         );
 
         return $this->render('wild/category.html.twig', [
