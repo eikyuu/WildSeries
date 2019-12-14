@@ -6,10 +6,10 @@
 /public/bundles/
 /var/
 /vendor/
-.php-version
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###
+.php-version
 .phpunit
 .phpunit.result.cache
 /phpunit.xml
