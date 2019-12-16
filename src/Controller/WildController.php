@@ -12,14 +12,16 @@ use App\Entity\Program;
 use App\Entity\Episode;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\CategoryType;
+use App\Service\Slugify;
 
 class WildController extends AbstractController
 {
     /**
-    * @Route("/wild/{id}", name="wild_show")
+    * @Route("/wild/{slug}", name="wild_show")
     */
-    public function show(Program $program)
+    public function show(Program $program, Slugify $slugify)
     {
+        $program->setSlug($slugify->generate($program->getTitle()));
         if (!$program) {
             throw $this
             ->createNotFoundException('No slug has been sent to find a program in program\'s table.');
