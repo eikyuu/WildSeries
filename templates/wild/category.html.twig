@@ -2,10 +2,10 @@
 
 {% block body %}
 <div class="container mt-5">
-    <h1>All TV shows from "{{ categoryName }}" category: </h1>
+    <h1>All TV shows from "{{ category.name }}" category: </h1>
     {% for program in programs %}
         <div>
-        <a href="{{ path('wild_show', {'id': program.id }) }}">{{program.title}}</a>
+        <a href="{{ path('wild_show', {'slug': program.slug }) }}">{{program.title}}</a>
             <h2>{{ loop.index }} / {{ program.title }}</h2>
             <p>{{ program.synopsis }}</p>
         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\Slugify;
 use App\Entity\Episode;
 use App\Form\EpisodeType;
 use App\Repository\EpisodeRepository;
@@ -28,7 +29,7 @@ class EpisodeController extends AbstractController
     /**
      * @Route("/new", name="episode_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Slugify $slugify): Response
     {
         $episode = new Episode();
         $form = $this->createForm(EpisodeType::class, $episode);
@@ -37,6 +38,7 @@ class EpisodeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($episode);
+            $episode->setSlug($slugify->generate($episode->getTitle()));
             $entityManager->flush();
 
             return $this->redirectToRoute('episode_index');
@@ -49,17 +51,19 @@ class EpisodeController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="episode_show", methods={"GET"})
+     * @Route("/{slug}", name="episode_show", methods={"GET"})
      */
-    public function show(Episode $episode): Response
+    public function show(Episode $episode, Slugify $slugify): Response
     {
+        $episode->setSlug($slugify->generate($episode->getTitle()));
+
         return $this->render('episode/show.html.twig', [
             'episode' => $episode,
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="episode_edit", methods={"GET","POST"})
+     * @Route("/{slug}/edit", name="episode_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Episode $episode): Response
     {
@@ -67,6 +71,7 @@ class EpisodeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $episode->setSlug($slugify->generate($episode->getTitle()));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('episode_index');

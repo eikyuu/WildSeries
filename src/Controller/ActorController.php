@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Actor;
 use App\Form\ActorType;
+use App\Service\Slugify;
 use App\Repository\ActorRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,6 +38,7 @@ class ActorController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($actor);
+            $actor->setSlug($slugify->generate($actor->getName()));
             $entityManager->flush();
 
             return $this->redirectToRoute('actor_index');
@@ -49,11 +51,11 @@ class ActorController extends AbstractController
     }
 
     /**
-     * @Route("/{name}", name="actor_show", methods={"GET"})
+     * @Route("/{slug}", name="actor_show", methods={"GET"})
      */
-    public function show(string $name, ActorRepository $actorRepository): Response
+    public function show(Actor $actor,Slugify $slugify): Response
     {
-        $actor = $actorRepository->findOneBy(['name' => ucwords(str_replace('-', ' ',$name))]);  
+        $actor->setSlug($slugify->generate($actor->getName()));
      
         return $this->render('actor/show.html.twig', [
             'actor' => $actor,
@@ -61,14 +63,15 @@ class ActorController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="actor_edit", methods={"GET","POST"})
+     * @Route("/{slug}/edit", name="actor_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Actor $actor): Response
+    public function edit(Request $request, Actor $actor, Slugify $slugify): Response
     {
         $form = $this->createForm(ActorType::class, $actor);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $actor->setSlug($slugify->generate($actor->getName()));
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('actor_index');

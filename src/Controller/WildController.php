@@ -10,16 +10,19 @@ use App\Repository\SeasonRepository;
 use App\Repository\EpisodeRepository;
 use App\Entity\Program;
 use App\Entity\Episode;
+use App\Entity\Category;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\CategoryType;
+use App\Service\Slugify;
 
 class WildController extends AbstractController
 {
     /**
-    * @Route("/wild/{id}", name="wild_show")
+    * @Route("/wild/{slug}", name="wild_show")
     */
-    public function show(Program $program)
+    public function show(Program $program, Slugify $slugify)
     {
+        $program->setSlug($slugify->generate($program->getTitle()));
         if (!$program) {
             throw $this
             ->createNotFoundException('No slug has been sent to find a program in program\'s table.');
@@ -31,12 +34,11 @@ class WildController extends AbstractController
     }
    
     /**
-     * @Route("/wild/category/{categoryName<[a-z]+>}", defaults={"categoryName" = null}, name="show_category")
+     * @Route("/wild/category/{slug}", defaults={"slug" = null}, name="show_category")
      */
-    public function showByCategory(string $categoryName, CategoryRepository $categoryRepository, ProgramRepository $programRepository)
+    public function showByCategory(Category $category, ProgramRepository $programRepository, Slugify $slugify)
     {
-        $category = $categoryRepository->findOneBy(['name' => mb_strtolower($categoryName)]);
-
+        $category->setSlug($slugify->generate($category->getName()));
         $programs = $programRepository->findBy(
           ['category' => $category],
           ['id' => 'DESC']
@@ -45,7 +47,7 @@ class WildController extends AbstractController
 
         return $this->render('wild/category.html.twig', [
           'programs' => $programs,
-          'categoryName' => ucwords($categoryName)
+          'category' => $category
         ]);
     }
 
