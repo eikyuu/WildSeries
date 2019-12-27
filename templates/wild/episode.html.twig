@@ -39,7 +39,13 @@
                 {% endfor %}
                 </p>
                 <hr>
+            {% if is_granted('ROLE_SUBSCRIBER') %}
+                {% if comment.author.id == user.id %}
+                    {{ include('comment/_delete_form.html.twig') }}
+                {% endif %}
+            {% endif %}
         {% endfor %}
+
     </div>
     <p>
         <a href="{{ path('show_season', {seasonId: season.id}) }}">

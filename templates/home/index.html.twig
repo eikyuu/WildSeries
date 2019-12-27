@@ -1,12 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="container mt-5">
-    <h1 class="m-3">Welcome</h1>
-</div>    
-
-<div class="container mt-5">
-    <h1>All TV shows: </h1>
+<div class="container mt-5 mb-5">
+    <h1 class="title">Welcome to Wild-Series</h1>
+    <h2>All TV shows: </h2>
     <div class="row">
     {% for program in programs %}
             <div class="col-4 mt-3 text-dark">
@@ -14,7 +11,7 @@
                 <img class="card-img-top" style="height:25rem;" src="{{program.poster}}" alt="{{ program.title }} poster">
                 <div class="card-body">
                     <h5 class="card-title">{{ program.title }} - Category: {{ program.category.name }}</h5>
-                    <a class="btn btn-primary" href="{{ path('wild_show', {'slug': program.slug }) }}">{{ program.title }}</a>
+                    <a class="btn" href="{{ path('wild_show', {'slug': program.slug }) }}">{{ program.title }}</a>
                 </div>    
             </div>
         </div>

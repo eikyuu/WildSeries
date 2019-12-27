@@ -3,7 +3,7 @@
 $red: #db0000;
 $black: #000000;
 $blanc: #ffffff;
-$gris: #564d4d;
+$gris: #686868;
 $sang: #831010;
 
 .navbar {
@@ -17,4 +17,11 @@ body {
 
 .dropdown-menu {
   background-color: $red;
+}
+.btn {
+  background-color: $gris;
+}
+
+.img_show {
+  height: 35rem;
 }
