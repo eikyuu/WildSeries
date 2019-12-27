@@ -6,8 +6,9 @@
 <div class="container mt-5">
     <h1 class="col-12">{{ program.title }}</h1>
     <div class="row mt-5">
-      <img class="col-5 img_show" src="{{program.poster}}" alt="{{ program.title }} poster">
-      <p class="col-6">{{ program.synopsis }} <br> Category: {{ program.category.name }}</p>
+      <img class="col-4 img_show" src="{{program.poster}}" alt="{{ program.title }} poster">
+      <iframe class="col-8" src="https://www.youtube.com/embed/w-omQBtshvk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <p class="col-12 mt-5">{{ program.synopsis }} <br> Category: {{ program.category.name }}</p>
     </div>
 
     <div class="row mt-5">
