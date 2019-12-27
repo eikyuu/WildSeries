@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="container">
     <h1>
         Episode {{ episode.number }}: {{ episode.title }}
     </h1>
@@ -15,22 +16,20 @@
         {{ episode.synopsis }}
     </p>
         {% if app.user %}
-        <div class="mx-auto mt-5 w-50 h-75">
-            <h3 class="commentTitle"> Laisser un commentaire </h3>
-
+        <div>
             {{ form_start(form) }}
-            <h5 class="mt-4">Commentaire :</h5>
+            <h5 class="mt-4">Your review:</h5>
             {{ form_widget(form.comment) }}
-            <h5 class="mt-4">Note :</h5>
+            <h5 class="mt-4">Your rating:</h5>
             {{ form_widget(form.rate) }}
-            <div class="text-right">
-                <button class="btn round btn-lg mt-3 text-center">{{ button_label|default('Valider') }}</button>
+            <div class="mt-4">
+                <button class="btn btn-danger">{{ button_label|default('Send') }}</button>
             </div>
             {{ form_end(form) }}
         </div>
     {% endif %}
-        <div class="mx-auto mt-5 w-50 h-75"> 
-        <h3 class="commentTitle"> Commentaires : </h3>
+        <div> 
+        <h3 class="commentTitle">User Reviews: : </h3>
         {% for comment in comments|sort %}
                 <p>Auteur : {{ comment.author.email }}</p>
                 <p>Commentaire : {{ comment.comment }}</p>
@@ -51,4 +50,5 @@
             Back to show details
         </a>
     </p>
+</div>
 {% endblock %}

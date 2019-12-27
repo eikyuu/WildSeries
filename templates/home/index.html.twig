@@ -14,7 +14,7 @@
                 <img class="card-img-top" style="height:25rem;" src="{{program.poster}}" alt="{{ program.title }} poster">
                 <div class="card-body">
                     <h5 class="card-title">{{ program.title }} - Category: {{ program.category.name }}</h5>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <a class="btn btn-primary" href="{{ path('wild_show', {'slug': program.slug }) }}">{{ program.title }}</a>
                 </div>    
             </div>
         </div>

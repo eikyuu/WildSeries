@@ -25,6 +25,7 @@ class WildController extends AbstractController
     */
     public function show(Program $program, Slugify $slugify)
     {
+        $seasons = $program->getSeasons();
         $program->setSlug($slugify->generate($program->getTitle()));
         if (!$program) {
             throw $this
@@ -32,7 +33,8 @@ class WildController extends AbstractController
         }
 
         return $this->render('wild/show.html.twig', [
-            'program' => $program
+            'program' => $program,
+            'seasons' => $seasons,
         ]);
     }
    
