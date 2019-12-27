@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+<div class="container">
     <h1>
         Episode {{ episode.number }}: {{ episode.title }}
     </h1>
@@ -14,6 +15,32 @@
     <p>
         {{ episode.synopsis }}
     </p>
+        {% if app.user %}
+        <div>
+            {{ form_start(form) }}
+            <h5 class="mt-4">Your review:</h5>
+            {{ form_widget(form.comment) }}
+            <h5 class="mt-4">Your rating:</h5>
+            {{ form_widget(form.rate) }}
+            <div class="mt-4">
+                <button class="btn btn-danger">{{ button_label|default('Send') }}</button>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    {% endif %}
+        <div> 
+        <h3 class="commentTitle">User Reviews: : </h3>
+        {% for comment in comments|sort %}
+                <p>Auteur : {{ comment.author.email }}</p>
+                <p>Commentaire : {{ comment.comment }}</p>
+                <p>
+                {% for i in 1..comment.rate  %}
+                    <i class="fas fa-star"></i>
+                {% endfor %}
+                </p>
+                <hr>
+        {% endfor %}
+    </div>
     <p>
         <a href="{{ path('show_season', {seasonId: season.id}) }}">
             Back to season list
@@ -23,4 +50,5 @@
             Back to show details
         </a>
     </p>
+</div>
 {% endblock %}

@@ -5,3 +5,4 @@ twig:
 # config/packages/twig.yaml
     globals:
       categoriesAll: '@App\Service\CategoriesManagement'
+      programsAll: '@App\Service\ProgramsManagement'

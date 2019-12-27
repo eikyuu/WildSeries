@@ -11,6 +11,9 @@ use App\Repository\EpisodeRepository;
 use App\Entity\Program;
 use App\Entity\Episode;
 use App\Entity\Category;
+use App\Entity\Comment;
+use App\Form\CommentType;
+use App\Repository\CommentRepository;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\CategoryType;
 use App\Service\Slugify;
@@ -22,6 +25,7 @@ class WildController extends AbstractController
     */
     public function show(Program $program, Slugify $slugify)
     {
+        $seasons = $program->getSeasons();
         $program->setSlug($slugify->generate($program->getTitle()));
         if (!$program) {
             throw $this
@@ -29,7 +33,8 @@ class WildController extends AbstractController
         }
 
         return $this->render('wild/show.html.twig', [
-            'program' => $program
+            'program' => $program,
+            'seasons' => $seasons,
         ]);
     }
    
@@ -93,21 +98,33 @@ class WildController extends AbstractController
     /**
      * @Route("/wild/episode/{title}", name="show_episode")
      */
-    public function showByEpisode(string $title, EpisodeRepository $episodeRepository)
+    public function showByEpisode(string $title, EpisodeRepository $episodeRepository, Request $request, CommentRepository $commentRepository)
     {
-
-     
         $episode = $episodeRepository->findOneBy(['title' => ucwords(str_replace('-', ' ',$title))]);
         $season = $episode->getSeason();
         $program = $season->getProgram();
+        $hyphenizedProgramTitle = strtolower(str_replace(' ', '-', $program->getTitle()));
+        
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
 
-        $hyphenizedProgramTitle = strtolower(str_replace(' ', '-', $program->getTitle()));        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $comment->setAuthor($this->getUser());
+            $comment->setEpisode($episode);
+            $entityManager->persist($comment);
+            $entityManager->flush();
+        }
                
         return $this->render('wild/episode.html.twig', [
             'episode' => $episode,
             'season' => $season,
             'program' => $program,
-            'hyphenizedProgramTitle' => $hyphenizedProgramTitle
+            'hyphenizedProgramTitle' => $hyphenizedProgramTitle,
+            'comments' => $commentRepository->findBy(['episode' => $episode]),
+            'form' => $form->createView(),
+            'user' => $this->getUser(),
         ]);
     }
 
