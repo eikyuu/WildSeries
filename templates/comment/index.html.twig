@@ -11,7 +11,9 @@
                 <th>Id</th>
                 <th>Comment</th>
                 <th>Rate</th>
-                <th>actions</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <th>actions</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -20,10 +22,12 @@
                 <td>{{ comment.id }}</td>
                 <td>{{ comment.comment }}</td>
                 <td>{{ comment.rate }}</td>
-                <td>
-                    <a href="{{ path('comment_show', {'id': comment.id}) }}">show</a>
-                    <a href="{{ path('comment_edit', {'id': comment.id}) }}">edit</a>
-                </td>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <td>
+                        <a href="{{ path('comment_show', {'id': comment.id}) }}">show</a>
+                        <a href="{{ path('comment_edit', {'id': comment.id}) }}">edit</a>
+                    </td>
+                {% endif %}    
             </tr>
         {% else %}
             <tr>
@@ -32,6 +36,8 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('comment_new') }}">Create new</a>
+    {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('comment_new') }}">Create new</a>
+    {% endif %}
+    
 {% endblock %}
