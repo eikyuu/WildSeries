@@ -33,6 +33,9 @@ class ProgramType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Program::class,
+            'attr' => [
+                'novalidate' => 'novalidate',
+            ]
         ]);
     }
 }
